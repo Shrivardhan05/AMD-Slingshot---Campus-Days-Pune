@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | Health & Nutrition Assistant</title>
+    <meta name="description" content="A contextual, AI-powered health and nutrition tracker.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orb"></div>
+    
+    <header class="app-header">
+        <h1>Aura</h1>
+        <p class="subtitle">Your Contextual Nutrition Assistant</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- Voice Input Section -->
+        <section class="card input-section" aria-labelledby="input-heading">
+            <h2 id="input-heading">Log Your Meal</h2>
+            <div class="voice-controls">
+                <button id="mic-btn" class="mic-btn" aria-label="Start Voice Input" title="Click to speak">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" x2="12" y1="19" y2="22"/>
+                    </svg>
+                </button>
+                <div class="status-text" id="status-text" aria-live="polite">Tap the mic and say what you ate!</div>
+            </div>
+            
+            <form id="manual-form" class="manual-form">
+                <label for="text-input" class="sr-only">Or type your meal manually</label>
+                <input type="text" id="text-input" placeholder="e.g. I had 2 scrambled eggs..." aria-label="Manual text input">
+                <button type="submit" class="btn primary-btn" aria-label="Submit Meal">Analyze</button>
+            </form>
+            <div id="loading-spinner" class="spinner hidden" aria-hidden="true"></div>
+        </section>
+
+        <!-- Macros Tracker Section -->
+        <section class="card macros-section" aria-labelledby="macros-heading">
+            <h2 id="macros-heading">Daily Progress</h2>
+            <div class="macros-grid">
+                <div class="macro-item">
+                    <div class="macro-label">Calories</div>
+                    <div class="macro-value" id="rem-cal">2000</div>
+                    <div class="macro-sub">Remaining</div>
+                </div>
+                <div class="macro-item protein">
+                    <div class="macro-label">Protein</div>
+                    <div class="macro-value" id="rem-pro">150g</div>
+                    <div class="macro-sub">Remaining</div>
+                </div>
+                <div class="macro-item carbs">
+                    <div class="macro-label">Carbs</div>
+                    <div class="macro-value" id="rem-carb">200g</div>
+                    <div class="macro-sub">Remaining</div>
+                </div>
+                <div class="macro-item fats">
+                    <div class="macro-label">Fats</div>
+                    <div class="macro-value" id="rem-fat">60g</div>
+                    <div class="macro-sub">Remaining</div>
+                </div>
+            </div>
+            <div id="log-output" class="log-output" aria-live="polite"></div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="card recommendations-section" aria-labelledby="rec-heading">
+            <h2 id="rec-heading">AI Recommendations</h2>
+            <p id="rec-context" class="context-msg">Click below to find healthy food nearby based on your remaining macros.</p>
+            <button id="recommend-btn" class="btn secondary-btn">Suggest a Local Meal</button>
+            <div id="rec-loading" class="spinner hidden" aria-hidden="true"></div>
+            <ul id="places-list" class="places-list" aria-live="polite"></ul>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
